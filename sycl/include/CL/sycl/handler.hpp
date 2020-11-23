@@ -1306,16 +1306,9 @@ public:
     MKernelName = getKernelName();
   }
 
-  void parallel_for(range<1> NumWorkItems, kernel Kernel) {
-    parallel_for_impl(NumWorkItems, Kernel);
-  }
-
-  void parallel_for(range<2> NumWorkItems, kernel Kernel) {
-    parallel_for_impl(NumWorkItems, Kernel);
-  }
-
-  void parallel_for(range<3> NumWorkItems, kernel Kernel) {
-    parallel_for_impl(NumWorkItems, Kernel);
+  template<int Dims>
+  void parallel_for(range<Dims> NumWorkItems, kernel Kernel){
+    parallel_for_impl<Dims>(NumWorkItems, Kernel);
   }
 
   /// Defines and invokes a SYCL kernel function for the specified range and
