@@ -18,4 +18,11 @@ int main() {
   decltype(std::declval<sycl::handler>().parallel_for({1}, l)) a1b();
   decltype(std::declval<sycl::handler>().parallel_for({1, 2}, l)) a2();
   decltype(std::declval<sycl::handler>().parallel_for({1, 2, 3}, l)) a3();
+
+  sycl::kernel *k;
+  decltype(std::declval<sycl::handler>().parallel_for<1>(1, *k)) ta1a();
+  decltype(std::declval<sycl::handler>().parallel_for<1>({1}, *k)) ta1c();
+  decltype(std::declval<sycl::handler>().parallel_for<1>(sycl::range<1>(1), *k)) ta1b();
+  decltype(std::declval<sycl::handler>().parallel_for<2>({1, 2}, *k)) ta2();
+  decltype(std::declval<sycl::handler>().parallel_for<3>({1, 2, 3}, *k)) ta3();
 }
